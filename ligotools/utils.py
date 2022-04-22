@@ -37,12 +37,8 @@ def reqshift(data,fshift=100,sample_rate=4096):
 
 
 #plotting function
-def plotty(strain_H1_whitenbp, strain_L1_whitenbp, time, timemax, tevent, SNR, template_match, template_fft, d_eff, datafreq, freqs, data_psd, eventname, plottype, fs):
+def plotty(strain_H1_whitenbp, strain_L1_whitenbp, time, timemax, tevent, SNR, template_match, template_fft, d_eff, datafreq, freqs, data_psd, eventname, plottype, fs, det, pcolor):
 
-	# since det is L1
-	
-	det = 'L1'
-	pcolor='g'
 	strain_whitenbp = strain_L1_whitenbp
 	
 	# -- Plot the result
@@ -105,3 +101,5 @@ def plotty(strain_H1_whitenbp, strain_L1_whitenbp, time, timemax, tevent, SNR, t
 	plt.legend(loc='upper left')
 	plt.title(det+' ASD and template around event')
 	plt.savefig('figurs/'+eventname+"_"+det+"_matchfreq."+plottype)
+	
+	
