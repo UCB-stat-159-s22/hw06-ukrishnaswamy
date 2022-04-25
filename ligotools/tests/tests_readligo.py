@@ -17,7 +17,7 @@ import pytest
 
 fnjson = "BBH_events_v3.json"
 
-events = json.load(open(fnjson,"r"))
+events = json.load(open('data/' + fnjson,"r"))
 
 event = events['GW150914']
 eventname = 'GW150914'
@@ -30,7 +30,7 @@ fband = event['fband']
 fs = event['fs']  
 NFFT = 4*fs
 
-strain_H1, time_H1, chan_dict_H1 = rl.loaddata(fn_H1, 'H1')
+strain_H1, time_H1, chan_dict_H1 = rl.loaddata('data/' + fn_H1, 'H1')
 Pxx_H1, freqs = mlab.psd(strain_H1, Fs = fs, NFFT = NFFT)
 psd_H1 = interp1d(freqs, Pxx_H1)
 
@@ -82,8 +82,6 @@ def test_reqshift():
 	assert min(array_reqshift) == -317.81028383942373
 	assert np.count_nonzero(array_reqshift) == len(array_reqshift)
 	
-# def test_plotty():
-    
 	
 def test_write_wavfile():
 	strain_H1_whiten = utils.whiten(strain_H1,psd_H1,0.000244140625)
