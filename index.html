@@ -681,16 +681,6 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ligotools/readligo.py:132: H5pyDeprecationWarning: dataset.value has been deprecated. Use dataset[()] instead.
-  shortnameArray = dqInfo[&#39;DQShortnames&#39;].value
-ligotools/readligo.py:138: H5pyDeprecationWarning: dataset.value has been deprecated. Use dataset[()] instead.
-  injnameArray = injInfo[&#39;InjShortnames&#39;].value
-ligotools/readligo.py:143: H5pyDeprecationWarning: dataset.value has been deprecated. Use dataset[()] instead.
-  gpsStart = meta[&#39;GPSstart&#39;].value
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="data-gaps">
@@ -761,7 +751,7 @@ For L1, 32 out of 32 seconds contain usable DATA
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1126259462.44
 </pre></div>
 </div>
-<img alt="_images/index_16_12.png" src="_images/index_16_12.png" />
+<img alt="_images/index_16_1.png" src="_images/index_16_1.png" />
 </div>
 </div>
 <p>The data are dominated by <strong>low frequency noise</strong>; there is no way to see a signal here, without some signal processing.</p>
@@ -813,11 +803,7 @@ For the moment, let’s ignore that, and assume it’s all noise.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jovyan/envs/ligo/lib/python2.7/site-packages/matplotlib/cbook/deprecation.py:107: MatplotlibDeprecationWarning: Passing one of &#39;on&#39;, &#39;true&#39;, &#39;off&#39;, &#39;false&#39; as a boolean is deprecated; use an actual boolean (True/False) instead.
-  warnings.warn(message, mplDeprecation, stacklevel=1)
-</pre></div>
-</div>
-<img alt="_images/index_19_1.png" src="_images/index_19_1.png" />
+<img alt="_images/index_19_0.png" src="_images/index_19_0.png" />
 </div>
 </div>
 <p>NOTE that we only plot the data between f_min = 20 Hz and f_max = 2000 Hz.</p>
@@ -1011,8 +997,8 @@ Whitening requires no prior knowledge of spectral lines, etc; only the data are 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/index_27_02.png" src="_images/index_27_02.png" />
-<img alt="_images/index_27_12.png" src="_images/index_27_12.png" />
+<img alt="_images/index_27_0.png" src="_images/index_27_0.png" />
+<img alt="_images/index_27_1.png" src="_images/index_27_1.png" />
 </div>
 </div>
 <p>In the above spectrograms, you may see lots of excess power below ~20 Hz, as well as strong spectral lines at 500, 1000, 1500 Hz (also evident in the ASDs above). The lines at multiples of 500 Hz are the harmonics of the “violin modes” of the fibers holding up the mirrors of the Advanced LIGO interferometers.</p>
@@ -1055,8 +1041,8 @@ Whitening requires no prior knowledge of spectral lines, etc; only the data are 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/index_29_02.png" src="_images/index_29_02.png" />
-<img alt="_images/index_29_12.png" src="_images/index_29_12.png" />
+<img alt="_images/index_29_0.png" src="_images/index_29_0.png" />
+<img alt="_images/index_29_1.png" src="_images/index_29_1.png" />
 </div>
 </div>
 <p>Loud (high SNR) signals may be visible in these spectrograms.  Compact object mergers show a characteristic “chirp” as the signal rises in frequency.  If you can’t see anything, try
@@ -1201,7 +1187,7 @@ v/c at peak = 0.57
 Radius of final BH = 199 km
 </pre></div>
 </div>
-<img alt="_images/index_33_12.png" src="_images/index_33_12.png" />
+<img alt="_images/index_33_1.png" src="_images/index_33_1.png" />
 </div>
 </div>
 </div>
@@ -1325,9 +1311,9 @@ The LIGO Scientific Collaboration, the Virgo Collaboration, <a class="reference 
 For detector L1, maximum at 1126259462.4324 with SNR = 13.2, D_eff = 999.74, horizon = 1650.6 Mpc
 </pre></div>
 </div>
-<img alt="_images/index_36_12.png" src="_images/index_36_12.png" />
-<img alt="_images/index_36_22.png" src="_images/index_36_22.png" />
-<img alt="_images/index_36_32.png" src="_images/index_36_32.png" />
+<img alt="_images/index_36_1.png" src="_images/index_36_1.png" />
+<img alt="_images/index_36_2.png" src="_images/index_36_2.png" />
+<img alt="_images/index_36_3.png" src="_images/index_36_3.png" />
 </div>
 </div>
 <div class="section" id="notes-on-these-results">
@@ -1497,7 +1483,7 @@ this is the “audio” equivalent of the enhanced visuals that NASA employs on 
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using data directory . ...
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ligotools.readligo.FileList instance at 0x7ff444bc5e10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ligotools.readligo.FileList instance at 0x7f586c59ff00&gt;
 </pre></div>
 </div>
 </div>
