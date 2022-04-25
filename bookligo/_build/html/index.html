@@ -51,7 +51,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="/user/umakrishnaswamy//proxy/absolute/8000/index.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -649,7 +648,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the event properties from a local json file</span>
-<span class="n">fnjson</span> <span class="o">=</span> <span class="s2">&quot;BBH_events_v3.json&quot;</span>
+<span class="n">fnjson</span> <span class="o">=</span> <span class="s2">&quot;data/BBH_events_v3.json&quot;</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">events</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">fnjson</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">))</span>
 <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
@@ -703,8 +702,8 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="c1">#----------------------------------------------------------------</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="c1"># read in data from H1 and L1, if available:</span>
-    <span class="n">strain_H1</span><span class="p">,</span> <span class="n">time_H1</span><span class="p">,</span> <span class="n">chan_dict_H1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="n">fn_H1</span><span class="p">,</span> <span class="s1">&#39;H1&#39;</span><span class="p">)</span>
-    <span class="n">strain_L1</span><span class="p">,</span> <span class="n">time_L1</span><span class="p">,</span> <span class="n">chan_dict_L1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="n">fn_L1</span><span class="p">,</span> <span class="s1">&#39;L1&#39;</span><span class="p">)</span>
+    <span class="n">strain_H1</span><span class="p">,</span> <span class="n">time_H1</span><span class="p">,</span> <span class="n">chan_dict_H1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="s1">&#39;data/&#39;</span> <span class="o">+</span> <span class="n">fn_H1</span><span class="p">,</span> <span class="s1">&#39;H1&#39;</span><span class="p">)</span>
+    <span class="n">strain_L1</span><span class="p">,</span> <span class="n">time_L1</span><span class="p">,</span> <span class="n">chan_dict_L1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="s1">&#39;data/&#39;</span> <span class="o">+</span> <span class="n">fn_L1</span><span class="p">,</span> <span class="s1">&#39;L1&#39;</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cannot find data files!&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You can download them from https://losc.ligo.org/s/events/&quot;</span><span class="o">+</span><span class="n">eventname</span><span class="p">)</span>
@@ -713,45 +712,13 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;homework/hw06-ukrishnaswamy/H-H1_LOSC_4_V2-1126259446-32.hdf5&#39;</span>
-</pre></div>
-</div>
-</div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;homework/hw06-ukrishnaswamy/H-H1_LOSC_4_V2-1126259446-32.hdf5&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;fn_H1&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">strain_H1</span><span class="p">,</span> <span class="n">time_H1</span><span class="p">,</span> <span class="n">chan_dict_H1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;fn_H1&#39;</span><span class="p">],</span> <span class="s1">&#39;H1&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">OSError</span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-16-b9bc4a2a53e2&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">strain_H1</span><span class="p">,</span> <span class="n">time_H1</span><span class="p">,</span> <span class="n">chan_dict_H1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="s1">&#39;homework/hw06-ukrishnaswamy/H-H1_LOSC_4_V2-1126259446-32.hdf5&#39;</span><span class="p">,</span> <span class="s1">&#39;H1&#39;</span><span class="p">)</span>
-
-<span class="nn">/home/jovyan/homework/hw06-ukrishnaswamy/ligotools/readligo.pyc</span> in <span class="ni">loaddata</span><span class="nt">(filename, ifo, tvec, readstrain)</span>
-<span class="g g-Whitespace">    </span><span class="mi">163</span> 
-<span class="g g-Whitespace">    </span><span class="mi">164</span>     <span class="c1"># -- Check for zero length file</span>
-<span class="ne">--&gt; </span><span class="mi">165</span>     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">st_size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>         <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span> 
-
-<span class="ne">OSError</span>: [Errno 2] No such file or directory: &#39;homework/hw06-ukrishnaswamy/H-H1_LOSC_4_V2-1126259446-32.hdf5&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ligotools/readligo.py:132: H5pyDeprecationWarning: dataset.value has been deprecated. Use dataset[()] instead.
+  shortnameArray = dqInfo[&#39;DQShortnames&#39;].value
+ligotools/readligo.py:138: H5pyDeprecationWarning: dataset.value has been deprecated. Use dataset[()] instead.
+  injnameArray = injInfo[&#39;InjShortnames&#39;].value
+ligotools/readligo.py:143: H5pyDeprecationWarning: dataset.value has been deprecated. Use dataset[()] instead.
+  gpsStart = meta[&#39;GPSstart&#39;].value
 </pre></div>
 </div>
 </div>
@@ -792,15 +759,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-6-e87a8281f875&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># both H1 and L1 will have the same time vector, so:</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">time</span> <span class="o">=</span> <span class="n">time_H1</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># the time sample interval (uniformly sampled!)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> 
-
-<span class="ne">NameError</span>: name &#39;time_H1&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;time_H1: len, min, mean, max = &#39;, 131072, 1126259446.0, 1126259461.999878, 1126259477.9997559)
+(&#39;strain_H1: len, min, mean, max = &#39;, 131072, -7.044665943156067e-19, 5.895522509246437e-23, 7.706262192397465e-19)
+(&#39;strain_L1: len, min, mean, max = &#39;, 131072, -1.8697138664279764e-18, -1.0522332249909908e-18, -4.60035111311666e-20)
+For H1, 32 out of 32 seconds contain usable DATA
+For L1, 32 out of 32 seconds contain usable DATA
 </pre></div>
 </div>
 </div>
@@ -824,6 +787,12 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;figurs/&#39;</span> <span class="o">+</span> <span class="n">eventname</span><span class="o">+</span><span class="s1">&#39;_strain.&#39;</span><span class="o">+</span><span class="n">plottype</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1126259462.44
+</pre></div>
+</div>
+<img alt="_images/index_16_1.png" src="_images/index_16_1.png" />
 </div>
 </div>
 <p>The data are dominated by <strong>low frequency noise</strong>; there is no way to see a signal here, without some signal processing.</p>
@@ -873,6 +842,13 @@ For the moment, let’s ignore that, and assume it’s all noise.</p>
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;figurs/&#39;</span> <span class="o">+</span> <span class="n">eventname</span><span class="o">+</span><span class="s1">&#39;_ASDs.&#39;</span><span class="o">+</span><span class="n">plottype</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jovyan/envs/ligo/lib/python2.7/site-packages/matplotlib/cbook/deprecation.py:107: MatplotlibDeprecationWarning: Passing one of &#39;on&#39;, &#39;true&#39;, &#39;off&#39;, &#39;false&#39; as a boolean is deprecated; use an actual boolean (True/False) instead.
+  warnings.warn(message, mplDeprecation, stacklevel=1)
+</pre></div>
+</div>
+<img alt="_images/index_19_1.png" src="_images/index_19_1.png" />
 </div>
 </div>
 <p>NOTE that we only plot the data between f_min = 20 Hz and f_max = 2000 Hz.</p>
@@ -963,6 +939,12 @@ B. Allen et al., PHYSICAL REVIEW D 85, 122006 (2012) ; <a class="reference exter
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>H1 BNS inspiral horizon = 169.4 Mpc, BNS inspiral range   = 74.8 Mpc
+L1 BNS inspiral horizon = 147.1 Mpc, BNS inspiral range   = 64.9 Mpc
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="bbh-range-is-bns-range">
@@ -1007,13 +989,6 @@ Whitening requires no prior knowledge of spectral lines, etc; only the data are 
     <span class="n">normalization</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">fband</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">fband</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">fs</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
     <span class="n">strain_H1_whitenbp</span> <span class="o">=</span> <span class="n">filtfilt</span><span class="p">(</span><span class="n">bb</span><span class="p">,</span> <span class="n">ab</span><span class="p">,</span> <span class="n">strain_H1_whiten</span><span class="p">)</span> <span class="o">/</span> <span class="n">normalization</span>
     <span class="n">strain_L1_whitenbp</span> <span class="o">=</span> <span class="n">filtfilt</span><span class="p">(</span><span class="n">bb</span><span class="p">,</span> <span class="n">ab</span><span class="p">,</span> <span class="n">strain_L1_whiten</span><span class="p">)</span> <span class="o">/</span> <span class="n">normalization</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">strain_H1_whiten</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1066,6 +1041,10 @@ Whitening requires no prior knowledge of spectral lines, etc; only the data are 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/index_27_0.png" src="_images/index_27_0.png" />
+<img alt="_images/index_27_1.png" src="_images/index_27_1.png" />
+</div>
 </div>
 <p>In the above spectrograms, you may see lots of excess power below ~20 Hz, as well as strong spectral lines at 500, 1000, 1500 Hz (also evident in the ASDs above). The lines at multiples of 500 Hz are the harmonics of the “violin modes” of the fibers holding up the mirrors of the Advanced LIGO interferometers.</p>
 <p>Now let’s zoom in on where we think the signal is, using the whitened data, in the hope of seeing a chirp:</p>
@@ -1106,6 +1085,10 @@ Whitening requires no prior knowledge of spectral lines, etc; only the data are 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/index_29_0.png" src="_images/index_29_0.png" />
+<img alt="_images/index_29_1.png" src="_images/index_29_1.png" />
+</div>
 </div>
 <p>Loud (high SNR) signals may be visible in these spectrograms.  Compact object mergers show a characteristic “chirp” as the signal rises in frequency.  If you can’t see anything, try
 <a href='https://losc.ligo.org/events/GW150914/'>event GW150914</a>, by changing the <code class="docutils literal notranslate"><span class="pre">eventname</span></code> variable in the first cell above.</p>
@@ -1118,7 +1101,7 @@ Whitening requires no prior knowledge of spectral lines, etc; only the data are 
 <div class="cell_input docutils container">
 <div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in the template (plus and cross) and parameters for the theoretical waveform</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">f_template</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">fn_template</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">f_template</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;data/&#39;</span> <span class="o">+</span> <span class="n">fn_template</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cannot find template file!&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You can download it from https://losc.ligo.org/s/events/&quot;</span><span class="o">+</span><span class="n">eventname</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">fn_template</span><span class="p">)</span>
@@ -1235,6 +1218,22 @@ Whitening requires no prior knowledge of spectral lines, etc; only the data are 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Properties of waveform template in GW150914_4_template.hdf5
+Waveform family = lalsim.SEOBNRv2
+Masses = 41.74, 29.24 Msun
+Mtot = 70.98 Msun, mfinal = 67.43 Msun 
+Spins = 0.35, -0.77
+Freq at inband, peak = 43.05, 169.84 Hz
+Time at inband, peak = -0.08, -0.02 s
+Duration (s) inband-peak = 0.06 s
+N_cycles inband-peak = 4
+v/c at peak = 0.57
+Radius of final BH = 199 km
+</pre></div>
+</div>
+<img alt="_images/index_33_1.png" src="_images/index_33_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="matched-filtering-to-find-the-signal">
@@ -1350,6 +1349,15 @@ The LIGO Scientific Collaboration, the Virgo Collaboration, <a class="reference 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For detector H1, maximum at 1126259462.4395 with SNR = 18.6, D_eff = 814.44, horizon = 1889.6 Mpc
+For detector L1, maximum at 1126259462.4324 with SNR = 13.2, D_eff = 999.74, horizon = 1650.6 Mpc
+</pre></div>
+</div>
+<img alt="_images/index_36_1.png" src="_images/index_36_1.png" />
+<img alt="_images/index_36_2.png" src="_images/index_36_2.png" />
+<img alt="_images/index_36_3.png" src="_images/index_36_3.png" />
+</div>
 </div>
 <div class="section" id="notes-on-these-results">
 <h3>Notes on these results<a class="headerlink" href="#notes-on-these-results" title="Permalink to this headline">¶</a></h3>
@@ -1371,11 +1379,7 @@ The LIGO Scientific Collaboration, the Virgo Collaboration, <a class="reference 
 <span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">wavfile</span>
 <span class="kn">from</span> <span class="nn">ligotools.utils</span> <span class="kn">import</span> <span class="n">write_wavfile</span>
 
-
 <span class="c1"># function to keep the data within integer limits, and write to wavfile:</span>
-<span class="c1"># def write_wavfile(filename,fs,data):</span>
-<span class="c1">#     d = np.int16(data/np.max(np.abs(data)) * 32767 * 0.9)</span>
-<span class="c1">#     wavfile.write(filename,int(fs), d)</span>
 
 <span class="n">deltat_sound</span> <span class="o">=</span> <span class="mf">2.</span>                     <span class="c1"># seconds around the event</span>
 
@@ -1409,6 +1413,16 @@ The LIGO Scientific Collaboration, the Virgo Collaboration, <a class="reference 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GW150914_template_whiten.wav
+</pre></div>
+</div>
+<div class="output text_html">
+<audio controls="controls" >
+    <source src="data:audio/wav;base64,R1cxNTA5MTRfdGVtcGxhdGVfd2hpdGVuLndhdg==" type="audio/wav" />
+    Your browser does not support the audio element.
+</audio>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1418,6 +1432,16 @@ The LIGO Scientific Collaboration, the Virgo Collaboration, <a class="reference 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GW150914_H1_whitenbp.wav
+</pre></div>
+</div>
+<div class="output text_html">
+<audio controls="controls" >
+    <source src="data:audio/wav;base64,R1cxNTA5MTRfSDFfd2hpdGVuYnAud2F2" type="audio/wav" />
+    Your browser does not support the audio element.
+</audio>
+</div></div>
 </div>
 </div>
 <div class="section" id="frequency-shift-the-audio-files">
@@ -1478,6 +1502,12 @@ this is the “audio” equivalent of the enhanced visuals that NASA employs on 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 648.16749914, -307.14005653,  734.98585191, ..., -688.26029959,
+        341.54708608, -633.49921193])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1489,6 +1519,14 @@ this is the “audio” equivalent of the enhanced visuals that NASA employs on 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">rl</span><span class="o">.</span><span class="n">FileList</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using data directory . ...
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ligotools.readligo.FileList instance at 0x7f91af0a9320&gt;
 </pre></div>
 </div>
 </div>
@@ -1504,6 +1542,16 @@ this is the “audio” equivalent of the enhanced visuals that NASA employs on 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GW150914_template_shifted.wav
+</pre></div>
+</div>
+<div class="output text_html">
+<audio controls="controls" >
+    <source src="data:audio/wav;base64,R1cxNTA5MTRfdGVtcGxhdGVfc2hpZnRlZC53YXY=" type="audio/wav" />
+    Your browser does not support the audio element.
+</audio>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1513,6 +1561,16 @@ this is the “audio” equivalent of the enhanced visuals that NASA employs on 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GW150914_H1_shifted.wav
+</pre></div>
+</div>
+<div class="output text_html">
+<audio controls="controls" >
+    <source src="data:audio/wav;base64,R1cxNTA5MTRfSDFfc2hpZnRlZC53YXY=" type="audio/wav" />
+    Your browser does not support the audio element.
+</audio>
+</div></div>
 </div>
 </div>
 </div>
@@ -1567,6 +1625,43 @@ this is the “audio” equivalent of the enhanced visuals that NASA employs on 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contents of all the key, value pairs in chan_dict
+NO_BURST_HW_INJ
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+NO_CBC_HW_INJ
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+CBC_CAT1
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+BURST_CAT2
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+BURST_CAT1
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+CBC_CAT2
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+DEFAULT
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+CBC_CAT3
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+NO_CW_HW_INJ
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+NO_STOCH_HW_INJ
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+NO_DETCHAR_HW_INJ
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+BURST_CAT3
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+DATA
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+(&#39;Total number of non-NaNs in these data = &#39;, 131072)
+(&#39;GPS start, GPS stop and length of  all data in this file = &#39;, 1126259446.0, 1126259477.9997559, 131072)
+(&#39;Number of segments with DQflag&#39;, &#39;CBC_CAT3&#39;, &#39; = &#39;, 1)
+(&#39;GPS start, GPS stop and length of segment&#39;, 0, &#39;in this file = &#39;, 1126259446.0, 1126259477.9997559, 131072)
+(&#39;Number of segments with DQflag&#39;, &#39;NO_CBC_HW_INJ&#39;, &#39; = &#39;, 1)
+(&#39;GPS start, GPS stop and length of segment&#39;, 0, &#39;in this file = &#39;, 1126259446.0, 1126259477.9997559, 131072)
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="comments-on-sampling-rate">
@@ -1596,6 +1691,19 @@ this is the “audio” equivalent of the enhanced visuals that NASA employs on 
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrote whitened data to file </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fncsv</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You can download this file by clicking &#39;jupyter&#39; in the top left corner, or using the &#39;data&#39; menu in Azure.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-28-df92f57ab458&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># construct a data structure for a csv file:</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="n">times</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span> <span class="n">strain_H1_whitenbp</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span><span class="n">strain_L1_whitenbp</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>       <span class="n">template_H1</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span><span class="n">template_L1</span><span class="p">[</span><span class="n">irange</span><span class="p">]</span> <span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">datcsv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># make a csv filename, header, and format</span>
+
+<span class="ne">NameError</span>: name &#39;template_H1&#39; is not defined
 </pre></div>
 </div>
 </div>

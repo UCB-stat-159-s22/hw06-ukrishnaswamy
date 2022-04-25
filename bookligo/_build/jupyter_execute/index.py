@@ -120,19 +120,13 @@ from ligotools import utils
 # you might get a matplotlib warning here; you can ignore it.
 
 
-# In[ ]:
-
-
-
-
-
 # ### Read the event properties from a local json file (download in advance):
 
-# In[4]:
+# In[3]:
 
 
 # Read the event properties from a local json file
-fnjson = "BBH_events_v3.json"
+fnjson = "data/BBH_events_v3.json"
 try:
     events = json.load(open(fnjson,"r"))
 except IOError:
@@ -167,7 +161,7 @@ print(event)
 # ## Read in the data
 # We will make use of the data, and waveform template, defined above.
 
-# In[12]:
+# In[8]:
 
 
 #----------------------------------------------------------------
@@ -176,31 +170,13 @@ print(event)
 #----------------------------------------------------------------
 try:
     # read in data from H1 and L1, if available:
-    strain_H1, time_H1, chan_dict_H1 = rl.loaddata(fn_H1, 'H1')
-    strain_L1, time_L1, chan_dict_L1 = rl.loaddata(fn_L1, 'L1')
+    strain_H1, time_H1, chan_dict_H1 = rl.loaddata('data/' + fn_H1, 'H1')
+    strain_L1, time_L1, chan_dict_L1 = rl.loaddata('data/' + fn_L1, 'L1')
 except:
     print("Cannot find data files!")
     print("You can download them from https://losc.ligo.org/s/events/"+eventname)
     print("Quitting.")
     quit()
-
-
-# In[11]:
-
-
-'homework/hw06-ukrishnaswamy/H-H1_LOSC_4_V2-1126259446-32.hdf5'
-
-
-# In[ ]:
-
-
-event['fn_H1']
-
-
-# In[14]:
-
-
-strain_H1, time_H1, chan_dict_H1 = rl.loaddata(event['fn_H1'], 'H1')
 
 
 # ## Data Gaps
@@ -213,7 +189,7 @@ strain_H1, time_H1, chan_dict_H1 = rl.loaddata(event['fn_H1'], 'H1')
 
 # ## First look at the data from H1 and L1
 
-# In[6]:
+# In[9]:
 
 
 # both H1 and L1 will have the same time vector, so:
@@ -238,7 +214,7 @@ print("For L1, {0} out of {1} seconds contain usable DATA".format(bits.sum(), le
  
 
 
-# In[ ]:
+# In[10]:
 
 
 # plot +- deltat seconds around the event:
@@ -275,7 +251,7 @@ if make_plots:
 # There's a signal in these data! 
 # For the moment, let's ignore that, and assume it's all noise.
 
-# In[ ]:
+# In[11]:
 
 
 make_psds = 1
@@ -341,7 +317,7 @@ if make_plots:
 # B. Allen et al., PHYSICAL REVIEW D 85, 122006 (2012) ; http://arxiv.org/abs/gr-qc/0509116
 # 
 
-# In[ ]:
+# In[12]:
 
 
 BNS_range = 1
@@ -430,7 +406,7 @@ if BNS_range:
 # 
 # We will plot the whitened strain data, along with the signal template, after the matched filtering section, below.
 
-# In[ ]:
+# In[13]:
 
 
 # function to whiten data
@@ -462,17 +438,11 @@ if whiten_data:
     strain_L1_whitenbp = filtfilt(bb, ab, strain_L1_whiten) / normalization
 
 
-# In[ ]:
-
-
-type(strain_H1_whiten)
-
-
 # ## Spectrograms
 # 
 # Now let's plot a short time-frequency spectrogram around our event:
 
-# In[ ]:
+# In[14]:
 
 
 if make_plots:
@@ -520,7 +490,7 @@ if make_plots:
 # 
 # Now let's zoom in on where we think the signal is, using the whitened data, in the hope of seeing a chirp:
 
-# In[ ]:
+# In[15]:
 
 
 if make_plots:
@@ -566,12 +536,12 @@ if make_plots:
 # 
 # As noted above, the results won't be identical to what is in the LIGO-Virgo papers, since we're skipping many subtleties, such as combining many consistent templates.
 
-# In[ ]:
+# In[20]:
 
 
 # read in the template (plus and cross) and parameters for the theoretical waveform
 try:
-    f_template = h5py.File(fn_template, "r")
+    f_template = h5py.File('data/' + fn_template, "r")
 except:
     print("Cannot find template file!")
     print("You can download it from https://losc.ligo.org/s/events/"+eventname+'/'+fn_template)
@@ -579,7 +549,7 @@ except:
     quit()
 
 
-# In[ ]:
+# In[14]:
 
 
 # extract metadata from the template file:
@@ -708,13 +678,13 @@ if make_plots:
 # GW150914: First results from the search for binary black hole coalescence with Advanced LIGO,
 # The LIGO Scientific Collaboration, the Virgo Collaboration, http://arxiv.org/abs/1602.03839
 
-# In[ ]:
+# In[15]:
 
 
 from ligotools.utils import plotty
 
 
-# In[ ]:
+# In[16]:
 
 
 # -- To calculate the PSD of the data, choose an overlap and a window (common to all detectors)
@@ -806,6 +776,12 @@ from ligotools.utils import plotty
 plotty(strain_H1_whitenbp, strain_L1_whitenbp, time, timemax, tevent, SNR, template_match, template_fft, d_eff, datafreq, freqs, data_psd, eventname, plottype, fs, det, pcolor='g')
 
 
+# In[ ]:
+
+
+
+
+
 # ### Notes on these results
 # 
 # * We make use of only one template, with a simple ASD estimate. The full analysis produces a Bayesian posterior result using many nearby templates. It does a more careful job estimating the ASD, and includes effects of uncertain calibration. 
@@ -818,7 +794,7 @@ plotty(strain_H1_whitenbp, strain_L1_whitenbp, time, timemax, tevent, SNR, templ
 # 
 # Make wav (sound) files from the filtered, downsampled data, +-2s around the event.
 
-# In[ ]:
+# In[17]:
 
 
 # make wav (sound) files from the whitened data, +-2s around the event.
@@ -826,11 +802,7 @@ plotty(strain_H1_whitenbp, strain_L1_whitenbp, time, timemax, tevent, SNR, templ
 from scipy.io import wavfile
 from ligotools.utils import write_wavfile
 
-
 # function to keep the data within integer limits, and write to wavfile:
-# def write_wavfile(filename,fs,data):
-#     d = np.int16(data/np.max(np.abs(data)) * 32767 * 0.9)
-#     wavfile.write(filename,int(fs), d)
 
 deltat_sound = 2.                     # seconds around the event
 
@@ -853,7 +825,7 @@ write_wavfile('audio/'+eventname+"_template_whiten.wav",int(fs), template_p_smoo
 # 
 # With good headphones, you may be able to hear a faint thump in the middle; that's our signal!
 
-# In[ ]:
+# In[18]:
 
 
 from IPython.display import Audio
@@ -863,7 +835,7 @@ print(fna)
 Audio(fna)
 
 
-# In[ ]:
+# In[19]:
 
 
 fna = eventname+"_H1_whitenbp.wav"
@@ -877,7 +849,7 @@ Audio(fna)
 # 
 # The code below will shift the data up by 400 Hz (by taking an FFT, shifting/rolling the frequency series, then inverse fft-ing). The resulting sound file will be noticibly more high-pitched, and the signal will be easier to hear.
 
-# In[ ]:
+# In[20]:
 
 
 from ligotools.utils import reqshift
@@ -916,25 +888,25 @@ template_p_shifted = reqshift(template_p_smooth,fshift=fshift,sample_rate=fs)
 write_wavfile('audio/'+eventname+"_template_shifted.wav",int(fs), template_p_shifted[indxt])
 
 
-# In[ ]:
+# In[21]:
 
 
 f = reqshift(strain_H1_whiten, 400., 4096)
 
 
-# In[ ]:
+# In[22]:
 
 
 strain_H1_whiten
 
 
-# In[ ]:
+# In[23]:
 
 
 write_wavfile('GW150914', 4096, strain_H1_whiten)
 
 
-# In[ ]:
+# In[24]:
 
 
 rl.FileList()
@@ -942,7 +914,7 @@ rl.FileList()
 
 # ### Listen to the frequency-shifted template and data
 
-# In[ ]:
+# In[25]:
 
 
 fna = eventname+"_template_shifted.wav"
@@ -950,7 +922,7 @@ print(fna)
 Audio(fna)
 
 
-# In[ ]:
+# In[26]:
 
 
 fna = eventname+"_H1_shifted.wav"
@@ -966,7 +938,7 @@ Audio(fna)
 # 
 # We also unpack the DQ and HW injection bits to check what their values are.
 
-# In[ ]:
+# In[27]:
 
 
 data_segments = 1
@@ -1022,7 +994,7 @@ if data_segments:
 
 # ## Construct a csv file containing the whitened data and template
 
-# In[ ]:
+# In[28]:
 
 
 # time vector around event
