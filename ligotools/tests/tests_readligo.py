@@ -38,7 +38,7 @@ psd_H1 = interp1d(freqs, Pxx_H1)
 # readligo 4 tests
 
 def test_readdatainstance():
-	strain_H1, time_H1, chan_dict_H1 = rl.loaddata(fn_H1, 'H1')
+	strain_H1, time_H1, chan_dict_H1 = rl.loaddata('data/' + fn_H1, 'H1')
 	
 	isinstance(strain_H1, np.ndarray)
 	isinstance(time_H1, np.ndarray)
@@ -46,20 +46,20 @@ def test_readdatainstance():
 
 
 def test_shapes():
-	strain_L1, time_L1, chan_dict_L1 = rl.loaddata(fn_L1, 'L1')
-	strain_H1, time_H1, chan_dict_H1 = rl.loaddata(fn_H1, 'H1')
+	strain_L1, time_L1, chan_dict_L1 = rl.loaddata('data/' + fn_L1, 'L1')
+	strain_H1, time_H1, chan_dict_H1 = rl.loaddata('data/' + fn_H1, 'H1')
 	
 	assert strain_H1.shape == strain_L1.shape 
 	
 def test_dictionary():
-	strain_L1, time_L1, chan_dict_L1 = rl.loaddata(fn_L1, 'L1')
-	strain_H1, time_H1, chan_dict_H1 = rl.loaddata(fn_H1, 'H1')
+	strain_L1, time_L1, chan_dict_L1 = rl.loaddata('data/' + fn_L1, 'L1')
+	strain_H1, time_H1, chan_dict_H1 = rl.loaddata('data/' + fn_H1, 'H1')
 	
 	chan_dict_L1.keys() == chan_dict_H1.keys()
 	
 def test_time():
-	strain_L1, time_L1, chan_dict_L1 = rl.loaddata(fn_L1, 'L1')
-	strain_H1, time_H1, chan_dict_H1 = rl.loaddata(fn_H1, 'H1')
+	strain_L1, time_L1, chan_dict_L1 = rl.loaddata('data/' + fn_L1, 'L1')
+	strain_H1, time_H1, chan_dict_H1 = rl.loaddata('data/' + fn_H1, 'H1')
 	
 	assert (time_L1 == time_H1).all()
 	
