@@ -712,16 +712,6 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ligotools/readligo.py:132: H5pyDeprecationWarning: dataset.value has been deprecated. Use dataset[()] instead.
-  shortnameArray = dqInfo[&#39;DQShortnames&#39;].value
-ligotools/readligo.py:138: H5pyDeprecationWarning: dataset.value has been deprecated. Use dataset[()] instead.
-  injnameArray = injInfo[&#39;InjShortnames&#39;].value
-ligotools/readligo.py:143: H5pyDeprecationWarning: dataset.value has been deprecated. Use dataset[()] instead.
-  gpsStart = meta[&#39;GPSstart&#39;].value
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="data-gaps">
@@ -844,11 +834,7 @@ For the moment, let’s ignore that, and assume it’s all noise.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jovyan/envs/ligo/lib/python2.7/site-packages/matplotlib/cbook/deprecation.py:107: MatplotlibDeprecationWarning: Passing one of &#39;on&#39;, &#39;true&#39;, &#39;off&#39;, &#39;false&#39; as a boolean is deprecated; use an actual boolean (True/False) instead.
-  warnings.warn(message, mplDeprecation, stacklevel=1)
-</pre></div>
-</div>
-<img alt="_images/index_19_1.png" src="_images/index_19_1.png" />
+<img alt="_images/index_19_0.png" src="_images/index_19_0.png" />
 </div>
 </div>
 <p>NOTE that we only plot the data between f_min = 20 Hz and f_max = 2000 Hz.</p>
@@ -1286,8 +1272,10 @@ The LIGO Scientific Collaboration, the Virgo Collaboration, <a class="reference 
 <span class="n">dets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;H1&#39;</span><span class="p">,</span> <span class="s1">&#39;L1&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">det</span> <span class="ow">in</span> <span class="n">dets</span><span class="p">:</span>
 
-    <span class="k">if</span> <span class="n">det</span> <span class="ow">is</span> <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="n">data</span> <span class="o">=</span> <span class="n">strain_L1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>           <span class="n">data</span> <span class="o">=</span> <span class="n">strain_H1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">det</span> <span class="ow">is</span> <span class="s1">&#39;L1&#39;</span><span class="p">:</span> 
+        <span class="n">data</span> <span class="o">=</span> <span class="n">strain_L1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>           
+        <span class="n">data</span> <span class="o">=</span> <span class="n">strain_H1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
     <span class="c1"># -- Calculate the PSD of the data.  Also use an overlap, and window:</span>
     <span class="n">data_psd</span><span class="p">,</span> <span class="n">freqs</span> <span class="o">=</span> <span class="n">mlab</span><span class="o">.</span><span class="n">psd</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Fs</span> <span class="o">=</span> <span class="n">fs</span><span class="p">,</span> <span class="n">NFFT</span> <span class="o">=</span> <span class="n">NFFT</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">psd_window</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="n">NOVL</span><span class="p">)</span>
@@ -1526,7 +1514,7 @@ this is the “audio” equivalent of the enhanced visuals that NASA employs on 
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using data directory . ...
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ligotools.readligo.FileList instance at 0x7f91af0a9320&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ligotools.readligo.FileList instance at 0x7f586c59ff00&gt;
 </pre></div>
 </div>
 </div>
@@ -1585,7 +1573,7 @@ this is the “audio” equivalent of the enhanced visuals that NASA employs on 
 <span class="k">if</span> <span class="n">data_segments</span><span class="p">:</span>
     <span class="c1"># read in the data at 4096 Hz:</span>
     <span class="c1"># fn = &#39;L-L1_LOSC_4_V1-1126259446-32.hdf5&#39;</span>
-    <span class="n">strain</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">chan_dict</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="n">fn_L1</span><span class="p">,</span> <span class="s1">&#39;H1&#39;</span><span class="p">)</span>
+    <span class="n">strain</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">chan_dict</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="s1">&#39;data/&#39;</span><span class="o">+</span><span class="n">fn_L1</span><span class="p">,</span> <span class="s1">&#39;H1&#39;</span><span class="p">)</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contents of all the key, value pairs in chan_dict&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">keys</span><span class="p">,</span><span class="n">values</span> <span class="ow">in</span> <span class="n">chan_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1679,6 +1667,8 @@ DATA
 <span class="c1"># zoom in on [-0.2,0.05] seconds around event</span>
 <span class="n">irange</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">((</span><span class="n">times</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">times</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">))</span>
 <span class="c1"># construct a data structure for a csv file:</span>
+<span class="n">template_H1</span> <span class="o">=</span> <span class="n">template_match</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">template_L1</span> <span class="o">=</span> <span class="n">template_match</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="n">times</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span> <span class="n">strain_H1_whitenbp</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span><span class="n">strain_L1_whitenbp</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span>
       <span class="n">template_H1</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span><span class="n">template_L1</span><span class="p">[</span><span class="n">irange</span><span class="p">]</span> <span class="p">]</span>
 <span class="n">datcsv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
@@ -1695,15 +1685,8 @@ DATA
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-28-df92f57ab458&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># construct a data structure for a csv file:</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="n">times</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span> <span class="n">strain_H1_whitenbp</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span><span class="n">strain_L1_whitenbp</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span>
-<span class="ne">----&gt; </span><span class="mi">7</span>       <span class="n">template_H1</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span><span class="n">template_L1</span><span class="p">[</span><span class="n">irange</span><span class="p">]</span> <span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">datcsv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># make a csv filename, header, and format</span>
-
-<span class="ne">NameError</span>: name &#39;template_H1&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wrote whitened data to file data/GW150914_data.csv
+You can download this file by clicking &#39;jupyter&#39; in the top left corner, or using the &#39;data&#39; menu in Azure.
 </pre></div>
 </div>
 </div>

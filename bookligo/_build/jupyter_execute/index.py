@@ -122,7 +122,7 @@ from ligotools import utils
 
 # ### Read the event properties from a local json file (download in advance):
 
-# In[3]:
+# In[31]:
 
 
 # Read the event properties from a local json file
@@ -143,7 +143,7 @@ except:
     quit()
 
 
-# In[5]:
+# In[32]:
 
 
 # Extract the parameters for the desired event:
@@ -161,7 +161,7 @@ print(event)
 # ## Read in the data
 # We will make use of the data, and waveform template, defined above.
 
-# In[8]:
+# In[33]:
 
 
 #----------------------------------------------------------------
@@ -189,7 +189,7 @@ except:
 
 # ## First look at the data from H1 and L1
 
-# In[9]:
+# In[34]:
 
 
 # both H1 and L1 will have the same time vector, so:
@@ -214,7 +214,7 @@ print("For L1, {0} out of {1} seconds contain usable DATA".format(bits.sum(), le
  
 
 
-# In[10]:
+# In[35]:
 
 
 # plot +- deltat seconds around the event:
@@ -251,7 +251,7 @@ if make_plots:
 # There's a signal in these data! 
 # For the moment, let's ignore that, and assume it's all noise.
 
-# In[11]:
+# In[36]:
 
 
 make_psds = 1
@@ -317,7 +317,7 @@ if make_plots:
 # B. Allen et al., PHYSICAL REVIEW D 85, 122006 (2012) ; http://arxiv.org/abs/gr-qc/0509116
 # 
 
-# In[12]:
+# In[37]:
 
 
 BNS_range = 1
@@ -406,7 +406,7 @@ if BNS_range:
 # 
 # We will plot the whitened strain data, along with the signal template, after the matched filtering section, below.
 
-# In[13]:
+# In[38]:
 
 
 # function to whiten data
@@ -442,7 +442,7 @@ if whiten_data:
 # 
 # Now let's plot a short time-frequency spectrogram around our event:
 
-# In[14]:
+# In[39]:
 
 
 if make_plots:
@@ -490,7 +490,7 @@ if make_plots:
 # 
 # Now let's zoom in on where we think the signal is, using the whitened data, in the hope of seeing a chirp:
 
-# In[15]:
+# In[40]:
 
 
 if make_plots:
@@ -536,7 +536,7 @@ if make_plots:
 # 
 # As noted above, the results won't be identical to what is in the LIGO-Virgo papers, since we're skipping many subtleties, such as combining many consistent templates.
 
-# In[20]:
+# In[41]:
 
 
 # read in the template (plus and cross) and parameters for the theoretical waveform
@@ -549,7 +549,7 @@ except:
     quit()
 
 
-# In[14]:
+# In[42]:
 
 
 # extract metadata from the template file:
@@ -678,13 +678,13 @@ if make_plots:
 # GW150914: First results from the search for binary black hole coalescence with Advanced LIGO,
 # The LIGO Scientific Collaboration, the Virgo Collaboration, http://arxiv.org/abs/1602.03839
 
-# In[15]:
+# In[43]:
 
 
 from ligotools.utils import plotty
 
 
-# In[16]:
+# In[58]:
 
 
 # -- To calculate the PSD of the data, choose an overlap and a window (common to all detectors)
@@ -714,8 +714,10 @@ template_fft = np.fft.fft(template*dwindow) / fs
 dets = ['H1', 'L1']
 for det in dets:
 
-    if det is 'L1': data = strain_L1.copy()
-    else:           data = strain_H1.copy()
+    if det is 'L1': 
+        data = strain_L1.copy()
+    else:           
+        data = strain_H1.copy()
 
     # -- Calculate the PSD of the data.  Also use an overlap, and window:
     data_psd, freqs = mlab.psd(data, Fs = fs, NFFT = NFFT, window=psd_window, noverlap=NOVL)
@@ -794,7 +796,7 @@ plotty(strain_H1_whitenbp, strain_L1_whitenbp, time, timemax, tevent, SNR, templ
 # 
 # Make wav (sound) files from the filtered, downsampled data, +-2s around the event.
 
-# In[17]:
+# In[45]:
 
 
 # make wav (sound) files from the whitened data, +-2s around the event.
@@ -825,7 +827,7 @@ write_wavfile('audio/'+eventname+"_template_whiten.wav",int(fs), template_p_smoo
 # 
 # With good headphones, you may be able to hear a faint thump in the middle; that's our signal!
 
-# In[18]:
+# In[46]:
 
 
 from IPython.display import Audio
@@ -835,7 +837,7 @@ print(fna)
 Audio(fna)
 
 
-# In[19]:
+# In[47]:
 
 
 fna = eventname+"_H1_whitenbp.wav"
@@ -849,7 +851,7 @@ Audio(fna)
 # 
 # The code below will shift the data up by 400 Hz (by taking an FFT, shifting/rolling the frequency series, then inverse fft-ing). The resulting sound file will be noticibly more high-pitched, and the signal will be easier to hear.
 
-# In[20]:
+# In[48]:
 
 
 from ligotools.utils import reqshift
@@ -888,25 +890,25 @@ template_p_shifted = reqshift(template_p_smooth,fshift=fshift,sample_rate=fs)
 write_wavfile('audio/'+eventname+"_template_shifted.wav",int(fs), template_p_shifted[indxt])
 
 
-# In[21]:
+# In[49]:
 
 
 f = reqshift(strain_H1_whiten, 400., 4096)
 
 
-# In[22]:
+# In[50]:
 
 
 strain_H1_whiten
 
 
-# In[23]:
+# In[51]:
 
 
 write_wavfile('GW150914', 4096, strain_H1_whiten)
 
 
-# In[24]:
+# In[52]:
 
 
 rl.FileList()
@@ -914,7 +916,7 @@ rl.FileList()
 
 # ### Listen to the frequency-shifted template and data
 
-# In[25]:
+# In[53]:
 
 
 fna = eventname+"_template_shifted.wav"
@@ -922,7 +924,7 @@ print(fna)
 Audio(fna)
 
 
-# In[26]:
+# In[54]:
 
 
 fna = eventname+"_H1_shifted.wav"
@@ -938,14 +940,14 @@ Audio(fna)
 # 
 # We also unpack the DQ and HW injection bits to check what their values are.
 
-# In[27]:
+# In[56]:
 
 
 data_segments = 1
 if data_segments:
     # read in the data at 4096 Hz:
     # fn = 'L-L1_LOSC_4_V1-1126259446-32.hdf5'
-    strain, time, chan_dict = rl.loaddata(fn_L1, 'H1')
+    strain, time, chan_dict = rl.loaddata('data/'+fn_L1, 'H1')
 
     print("Contents of all the key, value pairs in chan_dict")
     for keys,values in chan_dict.items():
@@ -994,7 +996,7 @@ if data_segments:
 
 # ## Construct a csv file containing the whitened data and template
 
-# In[28]:
+# In[59]:
 
 
 # time vector around event
@@ -1002,6 +1004,8 @@ times = time-tevent
 # zoom in on [-0.2,0.05] seconds around event
 irange = np.nonzero((times >= -0.2) & (times < 0.05))
 # construct a data structure for a csv file:
+template_H1 = template_match.copy()
+template_L1 = template_match.copy()
 dat = [times[irange], strain_H1_whitenbp[irange],strain_L1_whitenbp[irange],
       template_H1[irange],template_L1[irange] ]
 datcsv = np.array(dat).transpose()
@@ -1014,6 +1018,12 @@ np.savetxt(fncsv, datcsv, fmt=fmtcsv, header=headcsv)
 
 print("Wrote whitened data to file {0}".format(fncsv))
 print("You can download this file by clicking 'jupyter' in the top left corner, or using the 'data' menu in Azure.")
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
